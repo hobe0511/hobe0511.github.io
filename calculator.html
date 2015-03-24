@@ -1,0 +1,152 @@
+<script language=javascript>
+	var temp = 0;
+	var strOper = 0;
+	var valueM = 0;
+
+	// NUmber Button and point
+	function numBtn(str) {
+		if(strOper == null) 
+		{
+			document.getElementById("box").value = str;
+			strOper = 0;
+			return;
+		}
+
+		if(document.getElementById("box").value == 0)
+		{
+			document.getElementById("box").value = str;
+		}
+		else
+		{
+			document.getElementById("box").value += str;
+		}
+	}
+
+
+	// Operator
+	function operBtn(str) {
+		equal();
+
+		valueA = document.getElementById("box").value;
+		strOper = str;
+
+		document.getElementById("box").value = null;
+	}
+
+	// Equal
+	function equal() {
+		switch (strOper) {
+			case '+':
+				document.getElementById("box").value = parseFloat(valueA) + parseFloat(document.getElementById("box").value); 
+				break;
+			case '-':
+				document.getElementById("box").value = parseFloat(valueA) - parseFloat(document.getElementById("box").value); 
+				break;
+			case '*':
+				document.getElementById("box").value = parseFloat(valueA) * parseFloat(document.getElementById("box").value); 
+				break;
+			case '/':
+				document.getElementById("box").value = parseFloat(valueA) / parseFloat(document.getElementById("box").value); 
+				break;
+			default:
+				break;
+		}
+
+		temp = null;
+		strOper = null;
+	}
+
+	function buttonM(str){
+		switch (str) {
+			case 'M+':
+				valueM += parseFloat(document.getElementById("box").value);
+				break;
+			case 'M-':
+				valueM -= parseFloat(document.getElementById("box").value);
+				break;
+			case 'MC':
+				temp = 0;
+				strOper = 0;
+				valueM = 0;
+				document.getElementById("box").value = '0';
+				break;
+			case 'MR':
+				document.getElementById("box").value = parseFloat(valueM);
+				temp= null;
+				strOper = null;
+				break;
+			default:
+				break;
+		}
+	}       
+
+</script>
+
+
+
+
+
+
+<html>
+	<head>
+		<title> calculator </title>
+	</head>
+	<center>
+		<font size="10"> This is an example <br> Do you understand? </font>
+	</center>
+	<hr color="#ff8000" width="50%" size="5" align="center">
+
+	<center>
+		<h1> <font size="30" color="#0080ff"> <i> I am not a calculator!!!! </i> </font> </h1>
+	</center>
+
+	<body>
+		<table border="1" bgcolor="#ffcc33" align="center">
+
+		<tr>
+			<td align="center" colspan="6">
+				<input align="right" type="text" value="0" id="box" />	
+			</td>
+		</tr>
+
+		<tr>
+			<td> <input id="mAdd" type="button" value="M+" onclick="buttonM('M+')" /> </td>
+			<td> <input id="mMinus" type="button" value="M-" onclick="buttonM('M-')" /> </td>
+			<td> <input id="mC" type="button" value="MC" onclick="buttonM('MC')" /> </td>
+			<td> <input id="mR" type="button" value="MR" onclick="buttonM('MR')" /> </td>
+		</tr>
+
+		<tr align="center">
+			<td> <input type="button" value="7" onclick="numBtn('7')" > </td>
+			<td> <input type="button" value="8" onclick="numBtn('8')" > </td>
+			<td> <input type="button" value="9" onclick="numBtn('9')" > </td>
+			<td> <input type="button" value="+" onclick="operBtn('+')" > </td>
+		</tr>
+
+
+		<tr align="center">
+			<td> <input type="button" value="4" onclick="numBtn('4')" > </td>
+			<td> <input type="button" value="5" onclick="numBtn('5')" > </td>
+			<td> <input type="button" value="6" onclick="numBtn('6')" > </td>
+			<td> <input type="button" value="-" onclick="operBtn('-')" > </td>
+		</tr>
+
+
+		<tr align="center">
+			<td> <input type="button" value="1" onclick="numBtn('1')" > </td>
+			<td> <input type="button" value="2" onclick="numBtn('2')" > </td>
+			<td> <input type="button" value="3" onclick="numBtn('3')" > </td>
+			<td> <input type="button" value="*" onclick="operBtn('*')" > </td>
+		</tr>
+
+
+		<tr align="center">
+			<td> <input type="button" value="0" onclick="numBtn('0')" > </td>
+			<td> <input type="button" value="." onclick="numBtn('.')" > </td>
+			<td> <input type="button" value="=" onclick="equal()" > </td>
+			<td> <input type="button" value="/" onclick="operBtn('/')" > </td>
+		</tr>
+			
+		</table>
+	</body>
+</html>
